@@ -1,4 +1,5 @@
 eureka-server/.idea
+/*/target/
 movie/.mvn/
 movie/.idea/
 movie-genres/.idea/
