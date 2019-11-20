@@ -1,6 +1,6 @@
 #Default port is 8761
 server:
-  port: 8080
+  port: 8761
 
 eureka:
   client:

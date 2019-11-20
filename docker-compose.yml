@@ -1,0 +1,29 @@
+version: '3'
+
+networks:
+  new:
+
+services:
+  redis:
+    image: redis
+    container_name: redis-cache
+    networks:
+      - new
+    ports:
+      - "6379:6379"
+  eureka-server:
+    image: ms-pattern-impl/eureka-server
+    container_name: eureka-server
+    networks:
+      - new
+    ports:
+      - "8761:8761"
+  microservice-movie-genres:
+    image: ms-pattern-impl/movie-genres
+    container_name: microservice-movie-genres
+    networks:
+      - new
+    external_links:
+      - eureka-server:localhost
+    ports:
+      - "8081:8081"
