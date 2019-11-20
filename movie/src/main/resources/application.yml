@@ -2,7 +2,7 @@ spring:
   application:
     name: movie-service
 server:
-  port: 8091
+  port: 8082
 eureka:
   instance:
     preferIpAddress: true
