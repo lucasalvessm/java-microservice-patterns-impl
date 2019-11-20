@@ -1,5 +1,8 @@
-eureka-server/.idea/
+eureka-server/.idea
+movie/.mvn/
 movie/.idea/
 movie-genres/.idea/
+movie-genres/.mvn/
+
 
 
