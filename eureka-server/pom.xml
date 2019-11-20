@@ -34,35 +34,40 @@
     </dependency>
   </dependencies>
 
-  <!--Docker build Config-->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <start-class>br.com.tcd.microservice.application.EurekaServerApplication</start-class>
     <java.version>1.8</java.version>
-  </properties>
-
+      <docker.image.prefix>ms-pattern-impl</docker.image.prefix>
+    </properties>
   <build>
      <plugins>
-         <!-- We use the Resources plugin to filer Dockerfile and run.sh, it inserts actual JAR filename -->
-         <!-- The final Dockerfile will be created in target/dockerfile/Dockerfile -->
          <plugin>
-             <artifactId>maven-resources-plugin</artifactId>
+             <groupId>com.spotify</groupId>
+             <artifactId>dockerfile-maven-plugin</artifactId>
+             <version>1.4.9</version>
+             <configuration>
+                 <repository>${docker.image.prefix}/${project.artifactId}</repository>
+             </configuration>
+         </plugin>
+         <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-dependency-plugin</artifactId>
              <executions>
                  <execution>
-                     <id>copy-resources</id>
-                     <!-- here the phase you need -->
-                     <phase>validate</phase>
+                     <id>unpack</id>
+                     <phase>package</phase>
                      <goals>
-                         <goal>copy-resources</goal>
+                         <goal>unpack</goal>
                      </goals>
                      <configuration>
-                         <outputDirectory>${basedir}/target/dockerfile</outputDirectory>
-                         <resources>
-                             <resource>
-                                 <directory>src/main/docker</directory>
-                                 <filtering>true</filtering>
-                             </resource>
-                         </resources>
+                         <artifactItems>
+                             <artifactItem>
+                                 <groupId>${project.groupId}</groupId>
+                                 <artifactId>${project.artifactId}</artifactId>
+                                 <version>${project.version}</version>
+                             </artifactItem>
+                         </artifactItems>
                      </configuration>
                  </execution>
              </executions>
