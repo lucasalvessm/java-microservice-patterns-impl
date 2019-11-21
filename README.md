@@ -10,6 +10,7 @@ A simple architecture to demonstrate the use of key microservice patterns with:
 - H2
 - Zipkin
 - Redis
+- Swagger
 
 ## Pre requirements to run the applications:
 
@@ -39,8 +40,12 @@ On directory java-microservice-patterns-impl run the command:
 
 ## Endpoints
 
-- Redis: http://localhost:6379
 - Zipkin: http://localhost:9411
 - Eureka: http://localhost:8761
 - movie-genres-api: http://localhost:8081/genre
 - movie-api: http://localhost:8082/movie
+
+## Documentation
+
+- movie-genres-api: http://localhost:8081/swagger-ui.html
+- movie-api: http://localhost:8082/swagger-ui.html
