@@ -20,7 +20,11 @@ services:
     image: ms-pattern-impl/movie-genres
     networks:
       - new
-    external_links:
-      - eureka-server:localhost
     ports:
       - "8081:8081"
+  microservice-movie:
+    image: ms-pattern-impl/movie
+    networks:
+      - new
+    ports:
+      - "8082:8082"
