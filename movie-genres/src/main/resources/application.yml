@@ -1,6 +1,11 @@
 spring:
   application:
     name: movie-genres-service
+  zipkin:
+    baseUrl: http://zipkin:9411/
+  sleuth:
+    sampler:
+      percentage: 0.5
 server:
   port: 8081
 eureka:

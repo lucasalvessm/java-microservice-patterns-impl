@@ -10,6 +10,12 @@ services:
       - new
     ports:
       - "6379:6379"
+  zipkin:
+    image: openzipkin/zipkin
+    networks:
+      - new
+    ports:
+      - "9411:9411"
   eureka-server:
     image: ms-pattern-impl/eureka-server
     networks:
