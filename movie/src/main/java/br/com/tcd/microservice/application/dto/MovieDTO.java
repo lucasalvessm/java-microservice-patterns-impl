@@ -3,8 +3,7 @@ package br.com.tcd.microservice.application.dto;
 public class MovieDTO {
     private Long id;
     private String name;
-    private Long genreId;
-    private String genreDescription;
+    private GenreDTO genre;
     private Integer year;
 
     public Long getId() {
@@ -23,20 +22,12 @@ public class MovieDTO {
         this.name = name;
     }
 
-    public Long getGenreId() {
-        return genreId;
+    public GenreDTO getGenre() {
+        return genre;
     }
 
-    public void setGenreId(Long genreId) {
-        this.genreId = genreId;
-    }
-
-    public String getGenreDescription() {
-        return genreDescription;
-    }
-
-    public void setGenreDescription(String genreDescription) {
-        this.genreDescription = genreDescription;
+    public void setGenre(GenreDTO genre) {
+        this.genre = genre;
     }
 
     public Integer getYear() {

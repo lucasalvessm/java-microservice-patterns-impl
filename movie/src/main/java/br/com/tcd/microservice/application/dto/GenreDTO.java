@@ -5,6 +5,12 @@ public class GenreDTO {
     private Long id;
     private String description;
 
+    public GenreDTO() {}
+    public GenreDTO(long id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }
