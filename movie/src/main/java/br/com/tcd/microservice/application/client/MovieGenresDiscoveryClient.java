@@ -16,33 +16,32 @@ import java.util.List;
 
 @Component
 public class MovieGenresDiscoveryClient {
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
+    
     @HystrixCommand(
             commandProperties = {
                     @HystrixProperty(
                             name = "execution.isolation.thread.timeoutInMilliseconds",
-                            value = "2000")},
-            fallbackMethod = "getGenreListFallback")
-    public List<GenreDTO> getGenreList(String organizationId) {
+                            value = "50")},
+            fallbackMethod = "getGenreFallback")
+    public GenreDTO getGenre(Long genreId) {
         RestTemplate restTemplate = new RestTemplate();
         List<ServiceInstance> instances = discoveryClient.getInstances("movie-genres-service");
 
         if (instances.size() == 0) {
-            return null;
+            throw new IllegalArgumentException("Could not get movie-genres host information");
         }
 
-        String serviceUri = String.format("%s/genre%s", instances.get(0).getUri(),
-                organizationId);
+        String serviceUri = instances.get(0).getUri() +  "/genre/" + genreId;
 
-        ResponseEntity<GenreDTO[]> res = restTemplate.getForEntity(serviceUri, GenreDTO[].class);
+        ResponseEntity<GenreDTO> res = restTemplate.getForEntity(serviceUri, GenreDTO.class);
 
-        return Arrays.asList(res.getBody());
+        return res.getBody();
     }
 
-    @Autowired
-    private DiscoveryClient discoveryClient;
-
-    private List<GenreDTO> getGenreListFallback(String organizationId) {
-        List<GenreDTO> fallbackList = new ArrayList<>();
-        return fallbackList;
+    private GenreDTO getGenreFallback(Long genreId) {
+        return new GenreDTO(genreId, "Without enough information");
     }
 }
