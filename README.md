@@ -1,12 +1,15 @@
 # Microservices patterns with Java
 
-A simple application to demonstrate the use of key microservice patterns with:
+A simple architecture to demonstrate the use of key microservice patterns with:
 - Spring Boot
+- Spring MVC
 - Spring Data
 - Spring Cloud
 - Eureka
 - Hystrix
 - H2
+- Zipkin
+- Redis
 
 ## Pre requirements to run the applications:
 
@@ -33,3 +36,11 @@ On directory java-microservice-patterns-impl run the command:
  ```bash
     docker-compose up
 ```
+
+## Endpoints
+
+- Redis: http://localhost:6379
+- Zipkin: http://localhost:9411
+- Eureka: http://localhost:8761
+- movie-genres-api: http://localhost:8081/genre
+- movie-api: http://localhost:8082/movie
