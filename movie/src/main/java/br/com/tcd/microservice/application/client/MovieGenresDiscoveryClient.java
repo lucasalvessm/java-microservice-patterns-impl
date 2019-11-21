@@ -19,12 +19,12 @@ public class MovieGenresDiscoveryClient {
 
     @Autowired
     private DiscoveryClient discoveryClient;
-    
+
     @HystrixCommand(
             commandProperties = {
                     @HystrixProperty(
                             name = "execution.isolation.thread.timeoutInMilliseconds",
-                            value = "50")},
+                            value = "1500")},
             fallbackMethod = "getGenreFallback")
     public GenreDTO getGenre(Long genreId) {
         RestTemplate restTemplate = new RestTemplate();
