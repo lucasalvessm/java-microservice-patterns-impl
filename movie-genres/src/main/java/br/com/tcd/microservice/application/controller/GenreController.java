@@ -20,6 +20,11 @@ public class GenreController {
         return ResponseEntity.ok(genreRepository.findAll());
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<Genre> getOne(@PathVariable("id") Long genreId) {
+        return ResponseEntity.ok(genreRepository.findOne(genreId));
+    }
+
     @PostMapping
     public ResponseEntity<Genre> save(@Valid @RequestBody Genre req) {
         return ResponseEntity.ok(genreRepository.save(req));
