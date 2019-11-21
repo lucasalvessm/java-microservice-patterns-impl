@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.com.tcd.microservice</groupId>
     <artifactId>movie</artifactId>
-    <version>1.0.0-</version>
+    <version>1.0.0</version>
     <name>movie</name>
     <description>Demo project for Spring Boot</description>
 
